@@ -1,21 +1,30 @@
 turtles-own [
+; The words an agent know
   language
+
+; The amount of ticks an agent stays
+; put in order to learn new words
   tolerance
 ]
 
 to setup
-    let a_dialect ["a" "aa" "aaa" "aaaa"]
-    let b_dialect ["a" "bb" "bbb" "bbbb"]
+;   known_words are variables that represents
+;   the amount of words known by an agent, and,
+;   the difference between these variables
+;   represents the amount of words that are the same
+    let known_words_a 5
+    let known_words_b 4
 
     clear-all
+    reset-ticks
 
     create-turtles 1 [
         setxy 10 10
 
         set shape "person"
         set color 14
-        set language a_dialect
-        set tolerance random 3
+        set language known_words_a
+
     ]
 
     create-turtles 1 [
@@ -23,23 +32,33 @@ to setup
 
         set shape "person"
         set color 104
-        set language b_dialect
-        set tolerance 10
+        set language known_words_b
     ]
+end
+
+;
+; Returns words that both agents knows
+;
+to-report get-same-words [my neighbor]
+;   guarantees that we have a positive number
+  let same_words (my - neighbor)
+  if same_words < 0 [
+    set same_words  (same_words * -1)
+  ]
+
+  report same_words
 end
 
 to go
   ask turtles [
     let my-language language
-    let neighbor-languages first [language] of turtles-on neighbors
+    let neighbor-language first [language] of turtles-on neighbors
 
-    show (map = my-language neighbor-languages)
-    show (word self tolerance)
-
-;    show (word "I am turtle " self " and my neighbors speak: " neighbor-languages)
-;    show (word "I am turtle " self " and my neighbors speak: " my-language)
+    show (word get-same-words my-language neighbor-language)
+    show (word ticks)
   ]
 
+  tick
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
