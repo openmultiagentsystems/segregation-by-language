@@ -1,3 +1,5 @@
+__includes ["functions.nls"]
+
 turtles-own [
 ; The words an agent know
   language
@@ -34,19 +36,6 @@ to setup
         set color 104
         set language known_words_b
     ]
-end
-
-;
-; Returns words that both agents knows
-;
-to-report get-same-words [my neighbor]
-;   guarantees that we have a positive number
-  let same_words (my - neighbor)
-  if same_words < 0 [
-    set same_words  (same_words * -1)
-  ]
-
-  report same_words
 end
 
 to go
