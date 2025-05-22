@@ -24,27 +24,40 @@ to setup
         setxy 10 10
 
         set shape "person"
-        set color 14
+        set color red
         set language known_words_a
-
+        set tolerance 1
     ]
 
     create-turtles 1 [
         setxy 9 10
 
         set shape "person"
-        set color 104
+        set color blue
         set language known_words_b
+        set tolerance 1
     ]
 end
 
 to go
   ask turtles [
     let my-language language
-    let neighbor-language first [language] of turtles-on neighbors
+    let neighbor-turtles turtles-on neighbors
 
-    show (word get-same-words my-language neighbor-language)
-    show (word ticks)
+    if any? neighbor-turtles [
+      let neighbor-language [language] of one-of neighbor-turtles
+
+      if ((remainder ticks tolerance) = 0) [
+        if (has-words-to-learn my-language neighbor-language) [
+          set language language + 1
+          set heading random 360
+          forward 1
+        ]
+      ]
+
+;      show (word has-words-to-learn my-language neighbor-language)
+;      show (word ticks)
+    ]
   ]
 
   tick
