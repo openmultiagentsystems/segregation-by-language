@@ -20,19 +20,17 @@ to setup
     clear-all
     reset-ticks
 
-    create-turtles 1 [
-        setxy 10 10
+    create-turtles 10 [
+        setxy random-pxcor random-pycor
 
-        set shape "person"
         set color red
         set language known_words_a
         set tolerance 1
     ]
 
-    create-turtles 1 [
-        setxy 9 10
+    create-turtles 10 [
+        setxy random-pxcor random-pycor
 
-        set shape "person"
         set color blue
         set language known_words_b
         set tolerance 1
@@ -50,14 +48,17 @@ to go
       if ((remainder ticks tolerance) = 0) [
         if (has-words-to-learn my-language neighbor-language) [
           set language language + 1
-          set heading random 360
-          forward 1
         ]
       ]
 
-;      show (word has-words-to-learn my-language neighbor-language)
-;      show (word ticks)
+      print("---------------")
+      show (word "has learned? -> "(has-words-to-learn my-language neighbor-language))
+      show (word  "previous amount of words -> " my-language)
+      show (word "current amount of words -> " language)
     ]
+
+    rt random-float 360
+    fd random-float 10
   ]
 
   tick
@@ -91,10 +92,10 @@ ticks
 30.0
 
 BUTTON
-86
-111
-159
-144
+150
+10
+205
+44
 NIL
 setup
 NIL
@@ -108,10 +109,10 @@ NIL
 1
 
 BUTTON
-109
-230
-172
-263
+150
+44
+205
+78
 NIL
 go
 NIL
