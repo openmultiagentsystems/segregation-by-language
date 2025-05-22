@@ -1,13 +1,12 @@
 ;
 ; Returns words that both agents knows
 ;
-to-report get-same-words [my neighbor]
-;   guarantees that we have a positive number 
-  let same_words (my - neighbor)
-  if same_words < 0 [
-    set same_words  (same_words * -1)
-  ]
-  
-  report same_words
+to-report get-words-diff [my neighbor]
+  report (my - neighbor)
 end
 
+to-report has-words-to-learn [agent_words neighbor_words]
+  if agent_words > neighbor_words [report false ]
+  if neighbor_words > agent_words [report true ]
+  report false
+end
