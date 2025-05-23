@@ -20,7 +20,7 @@ to setup
     clear-all
     reset-ticks
 
-    create-turtles 10 [
+    create-turtles (amount_of_people / 2) [
         setxy random-pxcor random-pycor
 
         set color red
@@ -28,7 +28,7 @@ to setup
         set tolerance 1
     ]
 
-    create-turtles 10 [
+    create-turtles (amount_of_people / 2) [
         setxy random-pxcor random-pycor
 
         set color blue
@@ -124,6 +124,21 @@ NIL
 NIL
 NIL
 1
+
+SLIDER
+16
+79
+206
+113
+amount_of_people
+amount_of_people
+2
+100
+40.0
+2
+1
+NIL
+HORIZONTAL
 
 @#$#@#$#@
 ## WHAT IS IT?
