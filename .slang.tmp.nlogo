@@ -126,12 +126,12 @@ NIL
 1
 
 SLIDER
-0
-82
-208
-115
-blue_agents_amount
-blue_agents_amount
+16
+79
+224
+112
+blue_agent_amounts
+blue_agent_amounts
 2
 100
 12.0
@@ -141,10 +141,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-1
-132
-202
-165
+17
+129
+218
+162
 red_agents_amount
 red_agents_amount
 1
