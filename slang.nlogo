@@ -58,7 +58,7 @@ to go
     ]
 
     rt random-float 360
-    fd random-float 10
+    fd random-float 1
   ]
 
   tick
@@ -129,12 +129,12 @@ SLIDER
 16
 79
 206
-113
+112
 amount_of_people
 amount_of_people
 2
 100
-40.0
+12.0
 2
 1
 NIL
