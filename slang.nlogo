@@ -14,27 +14,27 @@ to setup
 ;   the amount of words known by an agent, and,
 ;   the difference between these variables
 ;   represents the amount of words that are the same
-    let known_words_a 5
-    let known_words_b 4
+  let known_words_a [1 2 3 4 5 6 7 8 9 10]
+  let known_words_b [11 12 13 14 15 16 17 18 19 20]
 
-    clear-all
-    reset-ticks
+  clear-all
+  reset-ticks
 
-    create-turtles red_agents_amount [
-        setxy random-pxcor random-pycor
+  create-turtles red_agents_amount [
+    setxy random-pxcor random-pycor
 
-        set color red
-        set language known_words_a
-        set tolerance 1
-    ]
+    set color red
+    set language known_words_a
+    set tolerance 1
+  ]
 
-    create-turtles blue_agents_amount [
-        setxy random-pxcor random-pycor
+  create-turtles blue_agents_amount [
+    setxy random-pxcor random-pycor
 
-        set color blue
-        set language known_words_b
-        set tolerance 1
-    ]
+    set color blue
+    set language known_words_b
+    set tolerance 1
+  ]
 end
 
 to go
@@ -115,7 +115,7 @@ BUTTON
 78
 NIL
 go
-NIL
+T
 1
 T
 OBSERVER
@@ -132,9 +132,9 @@ SLIDER
 115
 blue_agents_amount
 blue_agents_amount
-2
+1
 100
-12.0
+11.0
 2
 1
 NIL
@@ -149,7 +149,7 @@ red_agents_amount
 red_agents_amount
 1
 100
-27.0
+9.0
 2
 1
 NIL
