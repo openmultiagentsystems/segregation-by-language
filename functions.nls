@@ -22,3 +22,10 @@ to-report add [agent_words neighbor_words]
 
   report agent_words
 end
+
+to-report check_similarity [agent_words neighbor_words]
+  let first_agent_word first agent_words
+  let first_neighbor_word first neighbor_words
+  
+  report (first_agent_word - first_neighbor_word)
+end
