@@ -16,12 +16,13 @@ to setup
 ;   represents the amount of words that are the same
   let known_words_a [1 2 3 4 5 6 7 8 9 10]
   let known_words_b [11 12 13 14 15 16 17 18 19 20]
+  let known_words_c [21 22 23 24 25 26 27 28 29 30]
 
   clear-all
   reset-ticks
 
   create-turtles red_agents_amount [
-    setxy random-pxcor random-pycor
+    setxy 10 10
 
     set color red
     set language known_words_a
@@ -29,12 +30,20 @@ to setup
   ]
 
   create-turtles blue_agents_amount [
-    setxy random-pxcor random-pycor
+    setxy 9 10
 
     set color blue
     set language known_words_b
     set tolerance 1
   ]
+
+;  create-turtles yellow_agents_amount [
+;    setxy 10 10
+;
+;    set color yellow
+;    set language known_words_c
+;    set tolerance 1
+;  ]
 end
 
 to go
@@ -46,15 +55,16 @@ to go
       let neighbor-language [language] of one-of neighbor-turtles
 
       if ((remainder ticks tolerance) = 0) [
-        if (has-words-to-learn my-language neighbor-language) [
-          set language language + 1
-        ]
+;        if (has-words-to-learn my-language neighbor-language) [
+;          set language language + 1
+;        ]
       ]
 
       print("---------------")
-      show (word "has learned? -> "(has-words-to-learn my-language neighbor-language))
-      show (word  "previous amount of words -> " my-language)
-      show (word "current amount of words -> " language)
+      show (word "has learned? -> "(check_similarity my-language neighbor-language))
+;      show (word "has learned? -> "(has-words-to-learn my-language neighbor-language))
+;      show (word  "previous amount of words -> " my-language)
+;      show (word "current amount of words -> " language)
     ]
 
     rt random-float 360
@@ -115,7 +125,7 @@ BUTTON
 78
 NIL
 go
-T
+NIL
 1
 T
 OBSERVER
@@ -134,7 +144,7 @@ blue_agents_amount
 blue_agents_amount
 1
 100
-11.0
+1.0
 2
 1
 NIL
@@ -149,8 +159,23 @@ red_agents_amount
 red_agents_amount
 1
 100
-9.0
+1.0
 2
+1
+NIL
+HORIZONTAL
+
+SLIDER
+2
+169
+222
+203
+yellow_agents_amount
+yellow_agents_amount
+1
+100
+1.0
+1
 1
 NIL
 HORIZONTAL
