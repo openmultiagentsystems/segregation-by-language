@@ -11,6 +11,10 @@ to-report has-words-to-learn [agent_words neighbor_words]
   report false
 end
 
+;
+; Checks which words an agent
+; can learn and add its list of words
+;
 to-report add [agent_words neighbor_words]
   let new_words filter [x -> not member? x agent_words] neighbor_words
 
