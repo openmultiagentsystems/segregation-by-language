@@ -27,6 +27,7 @@ to setup
     set color red
     set language known_words_a
     set tolerance 1
+    set label who
   ]
 
   create-turtles blue_agents_amount [
@@ -35,15 +36,17 @@ to setup
     set color blue
     set language known_words_b
     set tolerance 1
+    set label who
   ]
 
-;  create-turtles yellow_agents_amount [
-;    setxy 10 10
-;
-;    set color yellow
-;    set language known_words_c
-;    set tolerance 1
-;  ]
+  create-turtles yellow_agents_amount [
+    setxy 10 11
+
+    set color yellow
+    set language known_words_c
+    set tolerance 1
+    set label who
+  ]
 end
 
 to go
@@ -75,10 +78,10 @@ to go
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-210
-10
-647
-448
+179
+13
+616
+451
 -1
 -1
 13.0
@@ -102,10 +105,10 @@ ticks
 30.0
 
 BUTTON
-150
-10
-205
-44
+62
+13
+117
+47
 NIL
 setup
 NIL
@@ -119,10 +122,10 @@ NIL
 1
 
 BUTTON
-150
-44
-205
-78
+120
+13
+175
+47
 NIL
 go
 NIL
@@ -136,10 +139,10 @@ NIL
 1
 
 SLIDER
-0
+8
+48
+176
 82
-208
-115
 blue_agents_amount
 blue_agents_amount
 1
@@ -151,10 +154,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-1
-132
-202
-165
+8
+83
+176
+117
 red_agents_amount
 red_agents_amount
 1
@@ -166,10 +169,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-2
-169
-222
-203
+8
+118
+176
+152
 yellow_agents_amount
 yellow_agents_amount
 1
