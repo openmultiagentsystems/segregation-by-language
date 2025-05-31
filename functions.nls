@@ -10,3 +10,11 @@ to-report has-words-to-learn [agent_words neighbor_words]
   if neighbor_words > agent_words [report true ]
   report false
 end
+
+to-report add [agent_words neighbor_words]
+  let new_words filter [x -> not member? x agent_words] neighbor_words
+
+  set agent_words lput (one-of new_words) agent_words
+
+  report agent_words
+end
