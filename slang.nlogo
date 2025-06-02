@@ -7,6 +7,8 @@ turtles-own [
 ; The amount of ticks an agent stays
 ; put in order to learn new words
   tolerance
+
+  age
 ]
 
 to setup
