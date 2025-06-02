@@ -54,29 +54,50 @@ to setup
 end
 
 to go
+  if ticks = 100 [
+    stop
+  ]
+
+  print "go"
+
   ask turtles [
     let my-language language
     let neighbor-turtles turtles-on neighbors
 
     if any? neighbor-turtles [
+      print who
+
+      let nearby-turtles turtles in-radius 1
+      print nearby-turtles
+
       let neighbor-language [language] of one-of neighbor-turtles
 
       if ((remainder ticks tolerance) = 0) [
+        let a add my-language neighbor-language
+        set language a
+
+        show (word "langugage: " language)
+;        show (word "words: " language)
 ;        if (has-words-to-learn my-language neighbor-language) [
 ;          set language language + 1
 ;        ]
       ]
 
       print("---------------")
-      show (word "has learned? -> "(check_similarity my-language neighbor-language))
+
 ;      show (word "has learned? -> "(has-words-to-learn my-language neighbor-language))
 ;      show (word  "previous amount of words -> " my-language)
 ;      show (word "current amount of words -> " language)
     ]
 
-    rt random-float 360
-    fd random-float 1
+
   ]
+
+  ask turtles [
+    rt random-float 360
+    fd 1
+  ]
+
 
   tick
 end
