@@ -24,7 +24,7 @@ to setup
   reset-ticks
 
   create-turtles red_agents_amount [
-    setxy 10 10
+    setxy random-pxcor random-pycor
 
     set color red
     set language known_words_a
@@ -33,8 +33,9 @@ to setup
   ]
 
   create-turtles blue_agents_amount [
-    setxy 9 10
+    setxy random-pxcor random-pycor
 
+;    facexy 11 10
     set color blue
     set language known_words_b
     set tolerance 1
@@ -42,8 +43,9 @@ to setup
   ]
 
   create-turtles yellow_agents_amount [
-    setxy 10 11
+    setxy random-pxcor random-pycor
 
+;    facexy -9 11
     set color yellow
     set language known_words_c
     set tolerance 1
