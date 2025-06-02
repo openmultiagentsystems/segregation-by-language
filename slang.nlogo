@@ -153,7 +153,7 @@ BUTTON
 47
 NIL
 go
-NIL
+T
 1
 T
 OBSERVER
@@ -167,7 +167,7 @@ SLIDER
 8
 48
 176
-82
+81
 blue_agents_amount
 blue_agents_amount
 1
@@ -179,9 +179,9 @@ NIL
 HORIZONTAL
 
 SLIDER
-8
-83
-176
+9
+84
+177
 117
 red_agents_amount
 red_agents_amount
@@ -197,7 +197,7 @@ SLIDER
 8
 118
 176
-152
+151
 yellow_agents_amount
 yellow_agents_amount
 1
@@ -207,6 +207,23 @@ yellow_agents_amount
 1
 NIL
 HORIZONTAL
+
+BUTTON
+114
+155
+178
+189
+NIL
+go
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
 
 @#$#@#$#@
 ## WHAT IS IT?
