@@ -30,7 +30,7 @@ to-report check_similarity [agent_words neighbor_words]
   report (first_agent_word - first_neighbor_word)
 end
 
-to pshow [should-show msg]
+to logmsg [msg]
   if should-show [
     show (word msg)
   ]
