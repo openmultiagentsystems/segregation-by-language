@@ -54,11 +54,11 @@ to setup
 end
 
 to go
-  if ticks = 100 [
+  if ticks = stop-when [
     stop
   ]
 
-  print "go"
+  logmsg (word "Tick stared, currently: " ticks)
 
   ask turtles [
     let my-language language
@@ -223,6 +223,48 @@ NIL
 NIL
 NIL
 NIL
+1
+
+SWITCH
+12
+270
+167
+304
+should-show
+should-show
+0
+1
+-1000
+
+INPUTBOX
+11
+342
+173
+403
+stop-when
+100.0
+1
+0
+Number
+
+TEXTBOX
+15
+251
+97
+270
+Turn logs on
+12
+0.0
+1
+
+TEXTBOX
+17
+308
+170
+340
+Amount of ticks that the simulation will run
+12
+0.0
 1
 
 @#$#@#$#@
