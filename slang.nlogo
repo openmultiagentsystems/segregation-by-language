@@ -103,10 +103,10 @@ to go
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-179
-13
-616
-451
+245
+8
+682
+446
 -1
 -1
 13.0
@@ -130,10 +130,10 @@ ticks
 30.0
 
 BUTTON
-62
-13
-117
-47
+58
+14
+113
+48
 NIL
 setup
 NIL
@@ -147,10 +147,10 @@ NIL
 1
 
 BUTTON
-120
-13
-175
-47
+181
+14
+236
+48
 NIL
 go
 T
@@ -165,9 +165,9 @@ NIL
 
 SLIDER
 8
-48
+63
 176
-81
+96
 blue_agents_amount
 blue_agents_amount
 1
@@ -179,10 +179,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-9
-84
-177
-117
+8
+108
+176
+141
 red_agents_amount
 red_agents_amount
 1
@@ -195,9 +195,9 @@ HORIZONTAL
 
 SLIDER
 8
-118
+153
 176
-151
+186
 yellow_agents_amount
 yellow_agents_amount
 1
@@ -209,10 +209,10 @@ NIL
 HORIZONTAL
 
 BUTTON
-114
-155
-178
-189
+116
+14
+180
+48
 NIL
 go
 NIL
