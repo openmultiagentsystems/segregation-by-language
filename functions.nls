@@ -17,8 +17,9 @@ end
 ;
 to-report add [agent_words neighbor_words]
   let new_words filter [x -> not member? x agent_words] neighbor_words
-
-  set agent_words lput (one-of new_words) agent_words
+  if not empty? new_words [
+    set agent_words lput (one-of new_words) agent_words
+  ]
 
   report agent_words
 end
