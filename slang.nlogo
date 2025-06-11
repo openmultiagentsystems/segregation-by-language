@@ -1,6 +1,5 @@
 __includes ["functions.nls"]
 
-
 turtles-own [
 ; The words an agent know
   language
@@ -10,6 +9,8 @@ turtles-own [
   tolerance
 
   age
+
+  has-learned
 ]
 
 to setup
@@ -17,14 +18,12 @@ to setup
 ;   the amount of words known by an agent, and,
 ;   the difference between these variables
 ;   represents the amount of words that are the same
-  let known_words_a [1 2 3 4 5 6 7 8 9 10]
-;  set difficulty_a 10
+  let known_words_a [1 2 3]
 
-  let known_words_b [11 12 13 14 15 16 17 18 19 20]
-;  set difficulty_b 80
+  let known_words_b [11 12 13]
 
-  let known_words_c [21 22 23 24 25 26 27 28 29 30]
-;  set difficulty_c 90
+  let known_words_c [21 22 23]
+
 
   clear-all
   reset-ticks
@@ -32,6 +31,7 @@ to setup
   create-turtles red_agents_amount [
     setxy random-pxcor random-pycor
 
+    set has-learned false
     set color red
     set language known_words_a
     set tolerance 1
@@ -41,7 +41,7 @@ to setup
   create-turtles blue_agents_amount [
     setxy random-pxcor random-pycor
 
-;    facexy 11 10
+    set has-learned false
     set color blue
     set language known_words_b
     set tolerance 1
@@ -51,7 +51,7 @@ to setup
   create-turtles yellow_agents_amount [
     setxy random-pxcor random-pycor
 
-;    facexy -9 11
+    set has-learned false
     set color yellow
     set language known_words_c
     set tolerance 1
@@ -72,7 +72,6 @@ to go
 
     if any? neighbor-turtles [
       let nearby-turtles turtles in-radius 1
-      print nearby-turtles
 
       let neighbor-language [language] of one-of neighbor-turtles
 
@@ -80,7 +79,7 @@ to go
         let learn random 100
         let difficulty 0
 
-        show (word "color: " color)
+;        show (word "color: " color)
         ;if ([color] of myself = red) [set color blue]
         ;pegar a cor do neighbor não do proprio agente
 
@@ -96,24 +95,28 @@ to go
           set difficulty difficulty_c
         ]
 
-        logmsg (word "learn: " learn)
-        logmsg (word "difficulty: " difficulty)
+;        logmsg (word "learn: " learn)
+;        logmsg (word "difficulty: " difficulty)
 
         if learn >= difficulty [
           let a add my-language neighbor-language
           set language a
+
+          let aa reduce and (map = a language)
+          logmsg (word "same? " aa)
+          if aa [
+            set has-learned true
+          ]
+
+
+;          logmsg (word "aprendeu " has-learned)
+;          logmsg (word "aprendeu " a)
+;          logmsg (word "aprendeu " language)
         ]
-
-
-        show (word "langugage: " language)
-
-;        show (word "words: " language)
-;        if (has-words-to-learn my-language neighbor-language) [
-;          set language language + 1
-;        ]
       ]
 
-      print("---------------")
+
+;      print("---------------")
 
 ;      show (word "has learned? -> "(has-words-to-learn my-language neighbor-language))
 ;      show (word  "previous amount of words -> " my-language)
@@ -124,10 +127,18 @@ to go
   ]
 
   ask turtles [
-    rt random-float 360
-    fd 1
-  ]
+    let neighbor-turtles turtles-on neighbors
 
+;    logmsg (word "not any? " not any? neighbor-turtles)
+;    logmsg (word "not has-learned " not has-learned)
+
+    if not any? neighbor-turtles or not has-learned [
+        rt random-float 360
+        fd 1
+
+        set has-learned false
+    ]
+  ]
 
   tick
 end
@@ -202,8 +213,8 @@ blue_agents_amount
 blue_agents_amount
 1
 100
-9.0
-2
+10.0
+1
 1
 NIL
 HORIZONTAL
@@ -217,8 +228,8 @@ red_agents_amount
 red_agents_amount
 1
 100
-9.0
-2
+10.0
+1
 1
 NIL
 HORIZONTAL
@@ -232,7 +243,7 @@ yellow_agents_amount
 yellow_agents_amount
 1
 100
-9.0
+10.0
 1
 1
 NIL
@@ -272,7 +283,7 @@ INPUTBOX
 173
 403
 stop-when
-10000.0
+1.0E15
 1
 0
 Number
@@ -298,15 +309,15 @@ Amount of ticks that the simulation will run
 1
 
 SLIDER
-72
-530
-244
-563
+8
+195
+180
+228
 difficulty_a
 difficulty_a
-10
+0
 100
-20.0
+0.0
 1
 1
 NIL
@@ -319,9 +330,9 @@ SLIDER
 599
 difficulty_b
 difficulty_b
-10
+0
 100
-90.0
+0.0
 1
 1
 NIL
@@ -334,9 +345,9 @@ SLIDER
 560
 difficulty_c
 difficulty_c
-10
+0
 100
-70.0
+0.0
 1
 1
 NIL
