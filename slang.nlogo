@@ -1,5 +1,6 @@
 __includes ["functions.nls"]
 
+
 turtles-own [
 ; The words an agent know
   language
@@ -17,8 +18,13 @@ to setup
 ;   the difference between these variables
 ;   represents the amount of words that are the same
   let known_words_a [1 2 3 4 5 6 7 8 9 10]
+;  set difficulty_a 10
+
   let known_words_b [11 12 13 14 15 16 17 18 19 20]
+;  set difficulty_b 80
+
   let known_words_c [21 22 23 24 25 26 27 28 29 30]
+;  set difficulty_c 90
 
   clear-all
   reset-ticks
@@ -65,18 +71,42 @@ to go
     let neighbor-turtles turtles-on neighbors
 
     if any? neighbor-turtles [
-      print who
-
       let nearby-turtles turtles in-radius 1
       print nearby-turtles
 
       let neighbor-language [language] of one-of neighbor-turtles
 
       if ((remainder ticks tolerance) = 0) [
-        let a add my-language neighbor-language
-        set language a
+        let learn random 100
+        let difficulty 0
+
+        show (word "color: " color)
+        ;if ([color] of myself = red) [set color blue]
+        ;pegar a cor do neighbor não do proprio agente
+
+        if color = red [
+          set difficulty difficulty_a
+        ]
+
+        if color = blue [
+          set difficulty difficulty_b
+        ]
+
+        if color = yellow [
+          set difficulty difficulty_c
+        ]
+
+        logmsg (word "learn: " learn)
+        logmsg (word "difficulty: " difficulty)
+
+        if learn >= difficulty [
+          let a add my-language neighbor-language
+          set language a
+        ]
+
 
         show (word "langugage: " language)
+
 ;        show (word "words: " language)
 ;        if (has-words-to-learn my-language neighbor-language) [
 ;          set language language + 1
@@ -172,7 +202,7 @@ blue_agents_amount
 blue_agents_amount
 1
 100
-1.0
+9.0
 2
 1
 NIL
@@ -187,7 +217,7 @@ red_agents_amount
 red_agents_amount
 1
 100
-1.0
+9.0
 2
 1
 NIL
@@ -202,7 +232,7 @@ yellow_agents_amount
 yellow_agents_amount
 1
 100
-1.0
+9.0
 1
 1
 NIL
@@ -229,7 +259,7 @@ SWITCH
 12
 270
 167
-304
+303
 should-show
 should-show
 0
@@ -242,7 +272,7 @@ INPUTBOX
 173
 403
 stop-when
-100.0
+10000.0
 1
 0
 Number
@@ -266,6 +296,51 @@ Amount of ticks that the simulation will run
 12
 0.0
 1
+
+SLIDER
+72
+530
+244
+563
+difficulty_a
+difficulty_a
+10
+100
+20.0
+1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+321
+566
+493
+599
+difficulty_b
+difficulty_b
+10
+100
+90.0
+1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+499
+527
+671
+560
+difficulty_c
+difficulty_c
+10
+100
+70.0
+1
+1
+NIL
+HORIZONTAL
 
 @#$#@#$#@
 ## WHAT IS IT?
