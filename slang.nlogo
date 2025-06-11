@@ -25,6 +25,13 @@ to setup
   let known_words_c [21 22 23]
 
 
+
+;  logmsg (word check-learned-words arr array)
+
+
+;  let po reduce and (map = array arr)
+;  logmsg(word po)
+
   clear-all
   reset-ticks
 
@@ -60,15 +67,22 @@ to setup
 end
 
 to go
+  let all_words [1 2 3 11 12 13 21 22 23]
   if ticks = stop-when [
     stop
   ]
 
-  logmsg (word "Tick stared, currently: " ticks)
+;  logmsg (word "Tick stared, currently: " ticks)
 
   ask turtles [
     let my-language language
     let neighbor-turtles turtles-on neighbors
+
+    let aab check-learned-words all_words language
+    if aab [
+      logmsg(word language)
+      die
+    ]
 
     if any? neighbor-turtles [
       let nearby-turtles turtles in-radius 1
@@ -102,8 +116,8 @@ to go
           let a add my-language neighbor-language
           set language a
 
-          let aa reduce and (map = a language)
-          logmsg (word "same? " aa)
+          let aa check-learned-words a language
+
           if aa [
             set has-learned true
           ]
@@ -283,7 +297,7 @@ INPUTBOX
 173
 403
 stop-when
-1.0E15
+1.0E9
 1
 0
 Number
@@ -317,17 +331,17 @@ difficulty_a
 difficulty_a
 0
 100
-0.0
+15.0
 1
 1
 NIL
 HORIZONTAL
 
 SLIDER
-321
-566
-493
-599
+47
+563
+219
+596
 difficulty_b
 difficulty_b
 0
@@ -339,10 +353,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-499
-527
-671
-560
+225
+524
+397
+557
 difficulty_c
 difficulty_c
 0
