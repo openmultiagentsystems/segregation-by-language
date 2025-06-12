@@ -11,6 +11,8 @@ turtles-own [
   age
 
   has-learned
+
+  knows-all-words
 ]
 
 to setup
@@ -38,6 +40,7 @@ to setup
   create-turtles red_agents_amount [
     setxy random-pxcor random-pycor
 
+    set knows-all-words false
     set has-learned false
     set color red
     set language known_words_a
@@ -48,6 +51,7 @@ to setup
   create-turtles blue_agents_amount [
     setxy random-pxcor random-pycor
 
+    set knows-all-words false
     set has-learned false
     set color blue
     set language known_words_b
@@ -58,6 +62,7 @@ to setup
   create-turtles yellow_agents_amount [
     setxy random-pxcor random-pycor
 
+    set knows-all-words false
     set has-learned false
     set color yellow
     set language known_words_c
@@ -68,6 +73,11 @@ end
 
 to go
   let all_words [1 2 3 11 12 13 21 22 23]
+
+  if all? turtles [ knows-all-words ][
+    stop
+  ]
+
   if ticks = stop-when [
     stop
   ]
@@ -78,11 +88,18 @@ to go
     let my-language language
     let neighbor-turtles turtles-on neighbors
 
-    let aab check-learned-words all_words language
-    if aab [
-      logmsg(word language)
-      die
+    if not knows-all-words [
+      if length language = length all_words [
+        logmsg(word language)
+
+        set knows-all-words true
+      ]
     ]
+
+;    if length language = 9 [
+;      logmsg(word language)
+;      die
+;    ]
 
     if any? neighbor-turtles [
       let nearby-turtles turtles in-radius 1
@@ -146,12 +163,16 @@ to go
 ;    logmsg (word "not any? " not any? neighbor-turtles)
 ;    logmsg (word "not has-learned " not has-learned)
 
-    if not any? neighbor-turtles or not has-learned [
+    if not knows-all-words [
+      if not any? neighbor-turtles or not has-learned [
         rt random-float 360
         fd 1
 
         set has-learned false
+      ]
     ]
+
+
   ]
 
   tick
@@ -227,7 +248,7 @@ blue_agents_amount
 blue_agents_amount
 1
 100
-10.0
+5.0
 1
 1
 NIL
@@ -242,7 +263,7 @@ red_agents_amount
 red_agents_amount
 1
 100
-10.0
+5.0
 1
 1
 NIL
@@ -257,7 +278,7 @@ yellow_agents_amount
 yellow_agents_amount
 1
 100
-10.0
+5.0
 1
 1
 NIL
@@ -331,7 +352,7 @@ difficulty_a
 difficulty_a
 0
 100
-15.0
+30.0
 1
 1
 NIL
@@ -346,7 +367,7 @@ difficulty_b
 difficulty_b
 0
 100
-0.0
+80.0
 1
 1
 NIL
@@ -361,7 +382,7 @@ difficulty_c
 difficulty_c
 0
 100
-0.0
+50.0
 1
 1
 NIL
