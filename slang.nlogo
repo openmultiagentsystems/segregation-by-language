@@ -1,5 +1,11 @@
 __includes ["functions.nls"]
 
+globals [
+  known_words_a
+  known_words_b
+  known_words_c
+]
+
 turtles-own [
   ; The words an agent know
   language
@@ -22,19 +28,18 @@ turtles-own [
 ]
 
 to setup
+  clear-all
+  reset-ticks
 
   ;   known_words are variables that represents
   ;   the amount of words known by an agent, and,
   ;   the difference between these variables
   ;   represents the amount of words that are the same
-  let known_words_a [1 2 3]
+  set known_words_a (range red-words-amount)
 
-  let known_words_b [11 12 13]
+  set known_words_b (range red-words-amount (blue-words-amount + red-words-amount))
 
-  let known_words_c [21 22 23]
-
-  clear-all
-  reset-ticks
+  set known_words_c (range (blue-words-amount + red-words-amount) (yellow-words-amount + blue-words-amount + red-words-amount))
 
   create-turtles red-agents-amount [
     setxy random-pxcor random-pycor
@@ -71,7 +76,10 @@ to setup
 end
 
 to go
-  let all_words [1 2 3 11 12 13 21 22 23]
+  let all_words sentence known_words_a known_words_b known_words_c
+;  set all_words sentence all_words known_words_c
+
+  print(all_words)
 
   if all? turtles [ knows-all-words ][
     stop
@@ -208,9 +216,9 @@ NIL
 
 SLIDER
 4
-135
+184
 182
-169
+218
 blue-agents-amount
 blue-agents-amount
 1
@@ -230,7 +238,7 @@ red-agents-amount
 red-agents-amount
 1
 100
-35.0
+10.0
 1
 1
 NIL
@@ -238,9 +246,9 @@ HORIZONTAL
 
 SLIDER
 4
-217
+309
 182
-251
+343
 yellow-agents-amount
 yellow-agents-amount
 1
@@ -275,7 +283,7 @@ SWITCH
 512
 should-show
 should-show
-1
+0
 1
 -1000
 
@@ -327,9 +335,9 @@ HORIZONTAL
 
 SLIDER
 4
-170
+219
 182
-204
+253
 blue-agents-difficulty
 blue-agents-difficulty
 0
@@ -342,14 +350,59 @@ HORIZONTAL
 
 SLIDER
 4
-251
+343
 183
-285
+377
 yellow-agents-difficulty
 yellow-agents-difficulty
 0
 100
 95.0
+1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+5
+119
+193
+152
+red-words-amount
+red-words-amount
+1
+100
+10.0
+1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+5
+259
+200
+292
+blue-words-amount
+blue-words-amount
+1
+100
+10.0
+1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+4
+380
+210
+413
+yellow-words-amount
+yellow-words-amount
+1
+100
+10.0
 1
 1
 NIL
