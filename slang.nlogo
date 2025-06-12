@@ -1,26 +1,32 @@
 __includes ["functions.nls"]
 
 turtles-own [
-; The words an agent know
+  ; The words an agent know
   language
 
-; The amount of ticks an agent stays
-; put in order to learn new words
+  ; The amount of ticks an agent stays
+  ; put in order to learn new words
   tolerance
 
   age
 
+  ; If an agent has learned a word
+  ; on the current tick
   has-learned
 
+  ; The condition used to know if an
+  ; agent already know all possible words
+  ; used to make the agent stay put if knows all words
+  ; used to stop the simulation if all agents know all words
   knows-all-words
 ]
 
 to setup
 
-;   known_words are variables that represents
-;   the amount of words known by an agent, and,
-;   the difference between these variables
-;   represents the amount of words that are the same
+  ;   known_words are variables that represents
+  ;   the amount of words known by an agent, and,
+  ;   the difference between these variables
+  ;   represents the amount of words that are the same
   let known_words_a [1 2 3]
 
   let known_words_b [11 12 13]
@@ -111,12 +117,11 @@ to go
         ]
 
         if learn >= difficulty [
-          let a add my-language neighbor-language
-          set language a
+          let new-language add my-language neighbor-language
+          set language new-language
 
-          let aa check-learned-words a language
-
-          if aa [
+          let has-learned-a-word check-learned-words new-language language
+          if has-learned-a-word [
             set has-learned true
           ]
         ]
@@ -203,14 +208,14 @@ NIL
 
 SLIDER
 4
-167
+135
 182
-201
+169
 blue-agents-amount
 blue-agents-amount
 1
 100
-5.0
+10.0
 1
 1
 NIL
@@ -225,7 +230,7 @@ red-agents-amount
 red-agents-amount
 1
 100
-5.0
+35.0
 1
 1
 NIL
@@ -240,7 +245,7 @@ yellow-agents-amount
 yellow-agents-amount
 1
 100
-4.0
+10.0
 1
 1
 NIL
@@ -314,7 +319,7 @@ red-agents-difficulty
 red-agents-difficulty
 0
 100
-90.0
+95.0
 1
 1
 NIL
@@ -322,14 +327,14 @@ HORIZONTAL
 
 SLIDER
 4
-132
+170
 182
-166
+204
 blue-agents-difficulty
 blue-agents-difficulty
 0
 100
-90.0
+95.0
 1
 1
 NIL
@@ -344,7 +349,7 @@ yellow-agents-difficulty
 yellow-agents-difficulty
 0
 100
-70.0
+95.0
 1
 1
 NIL
