@@ -16,7 +16,7 @@ turtles-own [
 ]
 
 to setup
-  set blue-agents-amount 10
+
 ;   known_words are variables that represents
 ;   the amount of words known by an agent, and,
 ;   the difference between these variables
@@ -27,18 +27,10 @@ to setup
 
   let known_words_c [21 22 23]
 
-
-
-;  logmsg (word check-learned-words arr array)
-
-
-;  let po reduce and (map = array arr)
-;  logmsg(word po)
-
   clear-all
   reset-ticks
 
-  create-turtles red_agents_amount [
+  create-turtles red-agents-amount [
     setxy random-pxcor random-pycor
 
     set knows-all-words false
@@ -60,7 +52,7 @@ to setup
     set label who
   ]
 
-  create-turtles yellow_agents_amount [
+  create-turtles yellow-agents-amount [
     setxy random-pxcor random-pycor
 
     set knows-all-words false
@@ -97,11 +89,6 @@ to go
       ]
     ]
 
-;    if length language = 9 [
-;      logmsg(word language)
-;      die
-;    ]
-
     if any? neighbor-turtles [
       let nearby-turtles turtles in-radius 1
 
@@ -111,24 +98,17 @@ to go
         let learn random 100
         let difficulty 0
 
-;        show (word "color: " color)
-        ;if ([color] of myself = red) [set color blue]
-        ;pegar a cor do neighbor não do proprio agente
-
         if color = red [
-          set difficulty difficulty_a
+          set difficulty red-agents-difficulty
         ]
 
         if color = blue [
-          set difficulty difficulty_b
+          set difficulty blue-agents-difficulty
         ]
 
         if color = yellow [
-          set difficulty difficulty_c
+          set difficulty yellow-agents-difficulty
         ]
-
-;        logmsg (word "learn: " learn)
-;        logmsg (word "difficulty: " difficulty)
 
         if learn >= difficulty [
           let a add my-language neighbor-language
@@ -139,30 +119,13 @@ to go
           if aa [
             set has-learned true
           ]
-
-
-;          logmsg (word "aprendeu " has-learned)
-;          logmsg (word "aprendeu " a)
-;          logmsg (word "aprendeu " language)
         ]
       ]
-
-
-;      print("---------------")
-
-;      show (word "has learned? -> "(has-words-to-learn my-language neighbor-language))
-;      show (word  "previous amount of words -> " my-language)
-;      show (word "current amount of words -> " language)
     ]
-
-
   ]
 
   ask turtles [
     let neighbor-turtles turtles-on neighbors
-
-;    logmsg (word "not any? " not any? neighbor-turtles)
-;    logmsg (word "not has-learned " not has-learned)
 
     if not knows-all-words [
       if not any? neighbor-turtles or not has-learned [
@@ -172,8 +135,6 @@ to go
         set has-learned false
       ]
     ]
-
-
   ]
 
   tick
@@ -207,10 +168,10 @@ ticks
 30.0
 
 BUTTON
-58
-14
-113
-48
+4
+9
+62
+44
 NIL
 setup
 NIL
@@ -224,10 +185,10 @@ NIL
 1
 
 BUTTON
+126
+9
 181
-14
-236
-48
+43
 NIL
 go
 T
@@ -241,42 +202,12 @@ NIL
 1
 
 SLIDER
-443
-559
-611
-592
-blue_agents_amount
-blue_agents_amount
-1
-100
-1.0
-1
-1
-NIL
-HORIZONTAL
-
-SLIDER
-8
-108
-176
-141
-red_agents_amount
-red_agents_amount
-1
-100
-6.0
-1
-1
-NIL
-HORIZONTAL
-
-SLIDER
-8
-153
-176
-186
-yellow_agents_amount
-yellow_agents_amount
+4
+167
+182
+201
+blue-agents-amount
+blue-agents-amount
 1
 100
 5.0
@@ -285,11 +216,41 @@ yellow_agents_amount
 NIL
 HORIZONTAL
 
-BUTTON
-116
-14
-180
+SLIDER
+4
 48
+182
+82
+red-agents-amount
+red-agents-amount
+1
+100
+5.0
+1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+4
+217
+182
+251
+yellow-agents-amount
+yellow-agents-amount
+1
+100
+4.0
+1
+1
+NIL
+HORIZONTAL
+
+BUTTON
+63
+9
+125
+44
 NIL
 go
 NIL
@@ -303,21 +264,21 @@ NIL
 1
 
 SWITCH
-12
-270
-167
-303
+8
+479
+163
+512
 should-show
 should-show
-0
+1
 1
 -1000
 
 INPUTBOX
-11
-342
-173
-403
+7
+551
+169
+612
 stop-when
 1.0E9
 1
@@ -325,32 +286,32 @@ stop-when
 Number
 
 TEXTBOX
-15
-251
-97
-270
+11
+460
+93
+479
 Turn logs on
 12
 0.0
 1
 
 TEXTBOX
-17
-308
-170
-340
+13
+518
+166
+550
 Amount of ticks that the simulation will run
 12
 0.0
 1
 
 SLIDER
-8
-195
-180
-228
-difficulty_a
-difficulty_a
+4
+82
+182
+116
+red-agents-difficulty
+red-agents-difficulty
 0
 100
 90.0
@@ -360,12 +321,12 @@ NIL
 HORIZONTAL
 
 SLIDER
-47
-563
-219
-596
-difficulty_b
-difficulty_b
+4
+132
+182
+166
+blue-agents-difficulty
+blue-agents-difficulty
 0
 100
 90.0
@@ -375,12 +336,12 @@ NIL
 HORIZONTAL
 
 SLIDER
-225
-524
-397
-557
-difficulty_c
-difficulty_c
+4
+251
+183
+285
+yellow-agents-difficulty
+yellow-agents-difficulty
 0
 100
 70.0
@@ -388,17 +349,6 @@ difficulty_c
 1
 NIL
 HORIZONTAL
-
-INPUTBOX
-10
-61
-172
-128
-blue-agents-amount
-10.0
-1
-0
-Number
 
 @#$#@#$#@
 ## WHAT IS IT?
