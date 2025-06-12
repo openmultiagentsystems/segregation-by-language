@@ -16,6 +16,7 @@ turtles-own [
 ]
 
 to setup
+  set blue-agents-amount 10
 ;   known_words are variables that represents
 ;   the amount of words known by an agent, and,
 ;   the difference between these variables
@@ -48,7 +49,7 @@ to setup
     set label who
   ]
 
-  create-turtles blue_agents_amount [
+  create-turtles blue-agents-amount [
     setxy random-pxcor random-pycor
 
     set knows-all-words false
@@ -240,15 +241,15 @@ NIL
 1
 
 SLIDER
-8
-63
-176
-96
+443
+559
+611
+592
 blue_agents_amount
 blue_agents_amount
 1
 100
-5.0
+1.0
 1
 1
 NIL
@@ -263,7 +264,7 @@ red_agents_amount
 red_agents_amount
 1
 100
-5.0
+6.0
 1
 1
 NIL
@@ -352,7 +353,7 @@ difficulty_a
 difficulty_a
 0
 100
-30.0
+90.0
 1
 1
 NIL
@@ -367,7 +368,7 @@ difficulty_b
 difficulty_b
 0
 100
-80.0
+90.0
 1
 1
 NIL
@@ -382,11 +383,22 @@ difficulty_c
 difficulty_c
 0
 100
-50.0
+70.0
 1
 1
 NIL
 HORIZONTAL
+
+INPUTBOX
+10
+61
+172
+128
+blue-agents-amount
+10.0
+1
+0
+Number
 
 @#$#@#$#@
 ## WHAT IS IT?
