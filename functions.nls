@@ -1,17 +1,4 @@
 ;
-; Returns words that both agents knows
-;
-to-report get-words-diff [my neighbor]
-  report (my - neighbor)
-end
-
-to-report has-words-to-learn [agent_words neighbor_words]
-  if agent_words > neighbor_words [report false ]
-  if neighbor_words > agent_words [report true ]
-  report false
-end
-
-;
 ; Checks which words an agent
 ; can learn and add its list of words
 ;
@@ -24,6 +11,9 @@ to-report add [agent_words neighbor_words]
   report agent_words
 end
 
+;
+; check if an agent already knows all words from another group
+;
 to-report check-learned-words [agent_words neighbor_words]
   let po filter [x -> not member? x agent_words] neighbor_words
   if not empty? po [
@@ -33,13 +23,30 @@ to-report check-learned-words [agent_words neighbor_words]
   report false
 end
 
-to-report check_similarity [agent_words neighbor_words]
-  let first_agent_word first agent_words
-  let first_neighbor_word first neighbor_words
+;
+; returns the difficulty based on the agent's color
+;
+to-report get-difficulty [agent-color]
+  let difficulty 0
   
-  report (first_agent_word - first_neighbor_word)
+  if agent-color = red [
+    set difficulty red-agents-difficulty
+  ]
+  
+  if agent-color = blue [
+    set difficulty blue-agents-difficulty
+  ]
+  
+  if agent-color = yellow [
+    set difficulty yellow-agents-difficulty
+  ]
+  
+  report difficulty
 end
 
+; 
+; output to commander controlled by the UI
+;
 to logmsg [msg]
   if should-show [
     show (word msg)
