@@ -36,9 +36,7 @@ to setup
   ;   the difference between these variables
   ;   represents the amount of words that are the same
   set known_words_a (range red-words-amount)
-
   set known_words_b (range red-words-amount (blue-words-amount + red-words-amount))
-
   set known_words_c (range (blue-words-amount + red-words-amount) (yellow-words-amount + blue-words-amount + red-words-amount))
 
   create-turtles red-agents-amount [
@@ -76,8 +74,8 @@ to setup
 end
 
 to go
-  let all_words sentence known_words_a known_words_b known_words_c
-;  set all_words sentence all_words known_words_c
+  let all_words sentence known_words_a known_words_b
+  set all_words sentence all_words known_words_c
 
   print(all_words)
 
