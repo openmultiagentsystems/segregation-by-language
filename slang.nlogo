@@ -108,19 +108,7 @@ to go
 
       if ((remainder ticks tolerance) = 0) [
         let learn random 100
-        let difficulty 0
-
-        if color = red [
-          set difficulty red-agents-difficulty
-        ]
-
-        if color = blue [
-          set difficulty blue-agents-difficulty
-        ]
-
-        if color = yellow [
-          set difficulty yellow-agents-difficulty
-        ]
+        let difficulty get-difficulty color
 
         if learn >= difficulty [
           let new-language add my-language neighbor-language
@@ -154,8 +142,8 @@ end
 GRAPHICS-WINDOW
 245
 8
-682
-446
+684
+448
 -1
 -1
 13.0
@@ -216,7 +204,7 @@ SLIDER
 4
 184
 182
-218
+217
 blue-agents-amount
 blue-agents-amount
 1
@@ -231,7 +219,7 @@ SLIDER
 4
 48
 182
-82
+81
 red-agents-amount
 red-agents-amount
 1
@@ -246,7 +234,7 @@ SLIDER
 4
 309
 182
-343
+342
 yellow-agents-amount
 yellow-agents-amount
 1
@@ -320,12 +308,12 @@ SLIDER
 4
 82
 182
-116
+115
 red-agents-difficulty
 red-agents-difficulty
 0
 100
-95.0
+6.0
 1
 1
 NIL
@@ -335,12 +323,12 @@ SLIDER
 4
 219
 182
-253
+252
 blue-agents-difficulty
 blue-agents-difficulty
 0
 100
-95.0
+15.0
 1
 1
 NIL
@@ -350,12 +338,12 @@ SLIDER
 4
 343
 183
-377
+376
 yellow-agents-difficulty
 yellow-agents-difficulty
 0
 100
-95.0
+100.0
 1
 1
 NIL
@@ -385,7 +373,7 @@ blue-words-amount
 blue-words-amount
 1
 100
-10.0
+6.0
 1
 1
 NIL
@@ -405,6 +393,40 @@ yellow-words-amount
 1
 NIL
 HORIZONTAL
+
+BUTTON
+10
+628
+230
+662
+NIL
+resize-world -30 30 -30 30
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+BUTTON
+12
+675
+230
+709
+NIL
+resize-world -16 16 -16 16
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
 
 @#$#@#$#@
 ## WHAT IS IT?
